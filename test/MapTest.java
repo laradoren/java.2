@@ -56,7 +56,7 @@ public class MapTest {
     }
 
     @Test
-    public void calculateDistanceSchool_TheSamePoint_Zero(){
+    public void calculateDistanceSchool_createTheSamePoint_Zero(){
         SchoolElement schoolElement = new SchoolElement(1, 2, Element.TypeOfElement.SCHOOL, "School");
 
         schoolElement.calcDistance(1, 2);
@@ -64,7 +64,7 @@ public class MapTest {
     }
 
     @Test
-    public void calculateDistanceHospitel_TheSamePoint_Zero(){
+    public void calculateDistanceHospitel_createTheSamePoint_Zero(){
         HospitalElement hospitalElement = new HospitalElement(1, 2, Element.TypeOfElement.HOSPITAL, "Hospital");
 
         hospitalElement.calcDistance(1, 2);
@@ -100,7 +100,7 @@ public class MapTest {
     }
 
     @Test
-    public void changeLocation_MovementToTheLocationPoint_False(){
+    public void changeLocation_MovementToTheSamePoint_False(){
         Location location = new Location(1, 2);
         SchoolElement schoolElement = new SchoolElement(1, 2, Element.TypeOfElement.SCHOOL, "School");
 
