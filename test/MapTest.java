@@ -8,7 +8,7 @@ import org.junit.rules.ExpectedException;
 
 public class MapTest {
     @Test
-    public void EqualsSchoolsTest() {
+    public void isEqualsSchools_SchoolsIsEquals_True() {
         SchoolElement school1 = new SchoolElement(1, 3, Element.TypeOfElement.SCHOOL, "School");
         SchoolElement school2 = new SchoolElement(1, 3, Element.TypeOfElement.SCHOOL, "School");
         Assert.assertTrue(school1.equals(school2) && school2.equals(school1));
@@ -16,7 +16,7 @@ public class MapTest {
     }
 
     @Test
-    public void EqualsCafeTest() {
+    public void isEqualsCafes_CafesIsEquals_True() {
         CafeElement cafeElement1 = new CafeElement(2, 6, Element.TypeOfElement.CAFE, "Cafe");
         CafeElement cafeElement2 = new CafeElement(2, 6, Element.TypeOfElement.CAFE, "Cafe");
         Assert.assertTrue(cafeElement1.equals(cafeElement2) && cafeElement2.equals(cafeElement1));
@@ -24,7 +24,7 @@ public class MapTest {
     }
 
     @Test
-    public void EqualsHospitalTest() {
+    public void isEqualsHospitals_HospitalsIsEquals_True() {
         HospitalElement hospitalElement1 = new HospitalElement(2, 6, Element.TypeOfElement.HOSPITAL, "Hospital");
         HospitalElement hospitalElement2 = new HospitalElement(2, 6, Element.TypeOfElement.HOSPITAL, "Hospital");
         Assert.assertTrue(hospitalElement1.equals(hospitalElement2) && hospitalElement2.equals(hospitalElement1));
@@ -32,7 +32,7 @@ public class MapTest {
     }
 
     @Test
-    public void EqualsHouseTest() {
+    public void isEqualsHouses_HousesIsEquals_True() {
         HouseElement houseElement1 = new HouseElement(3, 1, Element.TypeOfElement.HOUSE, "House");
         HouseElement houseElement2 = new HouseElement(3, 1, Element.TypeOfElement.HOUSE, "House");
         Assert.assertTrue(houseElement1.equals(houseElement2) && houseElement2.equals(houseElement1));
@@ -40,7 +40,7 @@ public class MapTest {
     }
 
     @Test
-    public void EqualsShopTest() {
+    public void isEqualsShops_ShopsIsEquals_True() {
         ShopElement shopElement1 = new ShopElement(3, 1, Element.TypeOfElement.SHOP, "Shop");
         ShopElement shopElement2 = new ShopElement(3, 1, Element.TypeOfElement.SHOP, "Shop");
         Assert.assertTrue(shopElement1.equals(shopElement2) && shopElement2.equals(shopElement1));
@@ -48,7 +48,7 @@ public class MapTest {
     }
 
     @Test
-    public void EqualsNullTest() {
+    public void isEqualsNulls_NullsIsEquals_True() {
         NullElement nullElement1 = new NullElement(3, 1, Element.TypeOfElement.NULL, "");
         NullElement nullElement2 = new NullElement(3, 1, Element.TypeOfElement.NULL, "");
         Assert.assertTrue(nullElement1.equals(nullElement2) && nullElement2.equals(nullElement1));
@@ -56,7 +56,7 @@ public class MapTest {
     }
 
     @Test
-    public void calcDistanceSchoolTest(){
+    public void calculateDistanceSchool_TheSamePoint_Zero(){
         SchoolElement schoolElement = new SchoolElement(1, 2, Element.TypeOfElement.SCHOOL, "School");
 
         schoolElement.calcDistance(1, 2);
@@ -64,7 +64,7 @@ public class MapTest {
     }
 
     @Test
-    public void calcDistanceHospitalTest(){
+    public void calculateDistanceHospitel_TheSamePoint_Zero(){
         HospitalElement hospitalElement = new HospitalElement(1, 2, Element.TypeOfElement.HOSPITAL, "Hospital");
 
         hospitalElement.calcDistance(1, 2);
@@ -72,7 +72,7 @@ public class MapTest {
     }
 
     @Test
-    public void EqualsMapTest(){
+    public void isEqualsMaps_MapsIsEquals_True(){
         TerrainMap map1 = new TerrainMap(5);
         TerrainMap map2 = new TerrainMap(5);
         Assert.assertTrue(map1.equals(map2) && map2.equals(map1));
@@ -80,7 +80,7 @@ public class MapTest {
     }
 
     @Test
-    public void addElementTest(){
+    public void addElementInMap_MapIsEmpty_True(){
         TerrainMap map = new TerrainMap(3);
         SchoolElement schoolElement = new SchoolElement(1, 2, Element.TypeOfElement.SCHOOL, "School");
 
@@ -90,7 +90,7 @@ public class MapTest {
     }
 
     @Test
-    public void locationOnMapTest(){
+    public void setLocationOnMap_CreateNewLocation_PrintLocation(){
         Location location = new Location(1, 2);
         TerrainMap map = new TerrainMap(4);
 
@@ -100,7 +100,7 @@ public class MapTest {
     }
 
     @Test
-    public void locationMoveTest(){
+    public void changeLocation_MovementToTheLocationPoint_False(){
         Location location = new Location(1, 2);
         SchoolElement schoolElement = new SchoolElement(1, 2, Element.TypeOfElement.SCHOOL, "School");
 
@@ -115,7 +115,7 @@ public class MapTest {
     }
 
     @Test
-    public void locationChangeTest(){
+    public void locationInfo_CreateNewLocation_PrintInfo(){
         Location location = new Location(1, 2);
         TerrainMap map = new TerrainMap(4);
 
@@ -131,7 +131,7 @@ public class MapTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void exceptionCreateTest() throws Exception {
+    public void addElementInException_TwoIdenticalElements_ExpectMessage() throws Exception {
         SchoolElement school = new SchoolElement(1, 3, Element.TypeOfElement.SCHOOL, "name");
 
         TerrainMap map1 = new TerrainMap(3);
