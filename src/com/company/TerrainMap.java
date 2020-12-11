@@ -1,9 +1,12 @@
 package com.company;
 
-import Elements.Element;
+import Elements.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class TerrainMap {
     public int SIZE;
@@ -43,6 +46,8 @@ public class TerrainMap {
         this.map.add(e);
     }
 
+
+
     public void print() {
         Iterator<Element> m = map.iterator();
         while (m.hasNext()) {
@@ -54,6 +59,27 @@ public class TerrainMap {
     public void infoMap() {
         System.out.println("It is new map. SIZE: " + SIZE);
     }
+
+    public float getCafePriceSum() {
+        return (float) map.stream().
+                filter(x -> x.getElement().equals(Element.TypeOfElement.CAFE)).
+                mapToDouble((Element::getPrice)).
+                sum();
+    }
+
+    public float getMaxPrice() {
+        return (float) map.stream().
+                mapToDouble(Element::getPrice).
+                max().getAsDouble();
+    }
+
+    public float getAveragePrice() {
+        return (float) map.stream().
+                mapToDouble(Element::getPrice).
+                average().getAsDouble();
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
