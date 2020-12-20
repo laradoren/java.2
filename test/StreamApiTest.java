@@ -93,7 +93,7 @@ public class StreamApiTest {
     }
 
     @Test
-    public void getGroupByTypeOfUpperClothesAndPrice_isFilterCorrect_True() {
+    public void getGroupByTypeOfElementAndPrice_isFilterCorrect_True() {
         //GIVEN
         Map<Boolean, List<ShopElement>> expected = new HashMap<>();
         expected.put(Boolean.TRUE, Arrays.asList(shopElements.get(0), shopElements.get(1), shopElements.get(2)));
@@ -109,7 +109,7 @@ public class StreamApiTest {
     }
 
     @Test
-    public void getMostPopularTypeOfUpperCloth_IsPopularCorrect_True() {
+    public void getMostPopularTypeOfElement_IsPopularCorrect_True() {
         //GIVEN
         List<TerrainMap> mapList = Arrays.asList(map, map1);
         List<String> expected = Arrays.asList("Hospital", "Shop");
