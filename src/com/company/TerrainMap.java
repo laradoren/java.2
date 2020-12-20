@@ -4,7 +4,8 @@ import Elements.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.function.Function;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -60,11 +61,31 @@ public class TerrainMap {
         System.out.println("It is new map. SIZE: " + SIZE);
     }
 
+    public Element get(int num){
+        return map.get(num);
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        for(Element element : map) {
+            if(o == element) return true;
+            if(o == null || o.getClass() != element.getClass()) return false;
+
+            Element e = (Element) o;
+            return element.equals(e);
+        }
+        return true;
+    }
+
+    public ArrayList<Element> getElements() {
+        return map;
+    }
+
     public float getCafePriceSum() {
         return (float) map.stream().
                 filter(x -> x.getElement().equals(Element.TypeOfElement.CAFE)).
-                mapToDouble((Element::getPrice)).
-                sum();
+                mapToDouble(Element::getPrice).sum();
     }
 
     public float getMaxPrice() {
@@ -79,18 +100,24 @@ public class TerrainMap {
                 average().getAsDouble();
     }
 
+    public static Map<Boolean, List<ShopElement>> getGroupByCondition(List<ShopElement> e, Predicate<Element> booleanCondition) {
+        return e.stream().collect(Collectors.partitioningBy(booleanCondition));
+    }
 
-
-    @Override
-    public boolean equals(Object o) {
-        for(Element element : map) {
-            if(o == element) return true;
-            if(o == null || o.getClass() != element.getClass()) return false;
-
-            Element e = (Element) o;
-            return element.equals(e);
-        }
-        return true;
+    public static List<String> getMostFrequentElement(List<TerrainMap> mapList) {
+        List<String> result = new ArrayList<>();
+        mapList.stream()
+                .flatMap(x -> x.getElements().stream())
+                .collect(Collectors.toList())
+                .stream()
+                .collect(Collectors.groupingBy(Element::isExpensive))
+                .forEach((key, value) -> value.stream()
+                        .collect(Collectors.groupingBy(x -> x.getNameElement(), Collectors.counting()))
+                        .entrySet()
+                        .stream()
+                        .max(Map.Entry.comparingByValue())
+                        .ifPresent(x -> result.add(x.getKey())));
+        return result;
     }
 
 }
